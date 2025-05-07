@@ -14,7 +14,6 @@ You can register the plugin globally in your Vue application as follows:
 ```vue
 import { createApp } from 'vue'
 import FormInputsPlugin from "@matatrek/vue3-form-inputs";
-import "@matatrek/vue3-form-inputs/style"; //styles
 
 const app = createApp(App)
 app.use(FormInputsPlugin, 
@@ -102,9 +101,9 @@ You can access the methods using ref in the component
 
 | Class | Descripción |
 |--------|------------|
-| `.form__container` | General styles for the form |
-| `.form__button` | General styles for the button |
-| `.form__button__icon` | General styles for the button icon |
+| `.mtk-form` | General styles for the form |
+| `.mtk-form-button` | General styles for the button |
+| `.mtk-form-button-icon` | General styles for the button icon |
 
 #### `InputText`
 
@@ -135,16 +134,16 @@ You can access the methods using ref in the component
 
 | Class | Descripción |
 |--------|------------|
-| `.wrapper` | Main container for the input field |
-| `.wrapper__label` | Label styling |
-| `.wrapper__label--required` | tyle for the required * indicator |
-| `.wrapper__label--disabled` | Style for the (disabled) label |
-| `.wrapper__label--readonly` | Style for the (read-only) label |
-| `.wrapper__input` | Wrapper around the input field |
-| `.wrapper__input_field` | Default input field styling |
-| `.wrapper__input__icon_right` | Positions the right-side icon inside the input |
-| `.wrapper__input__icon_password` | ositions the password visibility toggle |
-| `.wrapper__input__validator` | Error message styling |
+| `.mtk-wrapper` | Main container for the input field |
+| `.mtk-label` | Label styling |
+| `.mtk-required` | tyle for the required * indicator |
+| `.mtk-disabled` | Style for the (disabled) label |
+| `.mtk-readonly` | Style for the (read-only) label |
+| `.mtk-wrapper-input` | Wrapper around the input field |
+| `.mtk-input` | Default input field styling |
+| `.mtk-input-icon-right` | Positions the right-side icon inside the input |
+| `.mtk-input-icon-password` | ositions the password visibility toggle |
+| `.mtk-error` | Error message styling |
 
 
 ## License

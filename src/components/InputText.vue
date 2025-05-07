@@ -61,33 +61,33 @@ const updateValue = (event: Event) => {
 </script>
 
 <template>
-      <div class="wrapper">
-        <label class="wrapper__label" :for="title">{{ t(title) }}
-            <span v-if="isRequired" class="wrapper__label--required">*</span>
-            <span v-if="disabled" class="wrapper__label--disabled"> ( {{ t('disabled') }} )</span>
-            <span v-if="readonly" class="wrapper__label--readonly"> ( {{ t('readonly') }} )</span>
+      <div class="mtk-wrapper">
+        <label class="mtk-label" :for="title">{{ t(title) }}
+            <span v-if="isRequired" class="mtk-required">*</span>
+            <span v-if="disabled" class="mtk-disabled"> ( {{ t('disabled') }} )</span>
+            <span v-if="readonly" class="mtk-readonly"> ( {{ t('readonly') }} )</span>
         </label>
-        <div class="wrapper__input" :class="{ 'wrapper__input--error': hasError }">
+        <div class="mtk-wrapper-input" :class="{ 'mtk-wrapper-input-error': hasError }">
             <input
                 :id="title"
                 :name="title"
                 :type="isPassword ? typeInput : type"
                 :placeholder="t(placeholder)"
-                class="wrapper__input_field"
-                :class="{ 'wrapper__input_icon': icon }"
+                class="mtk-input"
+                :class="{ 'mtk-input-icon': icon }"
                 :value="modelValue"
                 :disabled="disabled"
                 :readonly="readonly"
                 @input="updateValue"
             />
-            <span class="wrapper__input__icon_right" v-if="icon">
+            <span class="mtk-icon mtk-input-icon-right" v-if="icon">
                 <component :is="icon" />
             </span>
-            <span class="wrapper__input__icon_password" v-if="isPassword">
+            <span class="mtk-icon mtk-input-icon-password" v-if="isPassword">
                 <component :is="iconPassword" @click="togglePassword" />
             </span>
         </div>
-        <span v-if="hasError" class="wrapper__input__validator">
+        <span v-if="hasError" class="mtk-error">
           <slot name="error">
             {{ message }}
           </slot>

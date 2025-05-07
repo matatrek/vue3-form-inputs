@@ -37,11 +37,11 @@ defineExpose({ validate });
 </script>
 
 <template>
-  <form @submit.prevent="validate" class="form__container">
+  <form @submit.prevent="validate" class="mtk-form">
     <slot/>
 
-    <button type="submit" class="form__button">
-      <component v-if="iconButton" :is="iconButton" class="form__button__icon"/>
+    <button type="submit" class="mtk-form-button">
+      <component v-if="iconButton" :is="iconButton" class="mtk-form-button-icon"/>
       {{ t(titleButton) }}
     </button>
   </form>
