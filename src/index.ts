@@ -1,4 +1,6 @@
-import "./styles.css"
+import { useInjectStyle } from '../src/utils/useInjectStyle.ts';
+useInjectStyle();
+
 import type { App } from "vue";
 import { MessageInput, InputText, FormContainer } from "./components/";
 
