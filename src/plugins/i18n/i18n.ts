@@ -4,7 +4,7 @@ const messages = {
     en: {
         validations: {
             required: 'This field is required',
-            minLength: 'Must be at least {length} characters',
+            minLength: 'Must be at least {min} characters',
             email: 'This field is not a valid email address'
         },
         "field_samepassword": "Password confirmation does not match the password.",
@@ -12,7 +12,7 @@ const messages = {
     es: {
         validations: {
             required: 'Este campo es obligatorio',
-            minLength: 'Debe tener al menos {length} caracteres',
+            minLength: 'Debe tener al menos {min} caracteres',
             email: 'Este campo no es un correo electrónico válido'
         },
         "field_samepassword": "La confirmación de la contraseña no coincide con la contraseña.",
