@@ -11,6 +11,7 @@ const withI18nMessage = createI18nMessage({
 
 // Envuelve cada validador con mensajes traducibles
 export const required = withI18nMessage(validators.required);
+export const email     = withI18nMessage(validators.email);
 export const minLength = withI18nMessage(validators.minLength, {
   withArguments: true // Necesario para validadores con parámetros
 });
