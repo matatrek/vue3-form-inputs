@@ -1,0 +1,59 @@
+{
+  "name": "@matatrek/vue3-form-inputs",
+  "version": "1.0.0",
+  "description": "A Vue plugin designed to simplify the creation of interactive and accessible forms. It includes built-in validations and supports translations (en, es).",
+  "main": "dist/vue3-form-inputs.umd.js",
+  "module": "dist/vue3-form-inputs.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-form-inputs.es.js",
+      "require": "./dist/vue3-form-inputs.umd.js"
+    },
+    "./style": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vuelidate/validators": "^2.0.4",
+    "@vuelidate/core": "^2.0.3",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.7.3",
+    "vite": "^4.4.5",
+    "vue-i18n": "^11.1.1",
+    "vue-tsc": "^1.8.27"
+  },
+  "author": "Edwin Mata",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matatrek/vue3-form-inputs.git"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "vue-component",
+    "input",
+    "form",
+    "validation",
+    "vuelidate",
+    "i18n",
+    "vue-i18n",
+    "password-toggle",
+    "custom-input",
+    "vue-form",
+    "vue-input",
+    "vue-plugin"
+  ]
+}
