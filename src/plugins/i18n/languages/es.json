@@ -1,0 +1,40 @@
+{
+    "validations": {
+        "required": "Este campo es obligatorio. No lo dejes en blanco.",
+        "requiredIf": "Este campo es obligatorio debido a la condición establecida.",
+        "requiredUnless": "Este campo es obligatorio salvo que se cumpla la condición.",
+        "minLength": "Debe contener al menos {min} caracteres.",
+        "maxLength": "No puede superar los {max} caracteres.",
+        "minValue": "El valor debe ser mayor o igual a {min}.",
+        "maxValue": "El valor debe ser menor o igual a {max}.",
+        "between": "El valor debe estar entre {min} y {max}.",
+        "alpha": "Solo se permiten letras (sin números ni símbolos).",
+        "alphaNum": "Solo se permiten letras y números (sin caracteres especiales).",
+        "numeric": "Solo se permiten números.",
+        "integer": "Debe ser un número entero (sin decimales).",
+        "decimal": "Debe ser un número decimal válido, usa punto (.) como separador.",
+        "email": "Ingresa una dirección de correo válida (ejemplo: usuario@dominio.com).",
+        "ipAddress": "Ingresa una dirección IP válida (ejemplo: 192.168.0.1).",
+        "macAddress": "Ingresa una dirección MAC válida (ejemplo: 00:1B:44:11:3A:B7).",
+        "url": "Ingresa una URL válida (ejemplo: https://ejemplo.com).",
+        "sameAs": "El valor debe coincidir con {otherName}.",
+        "not": "Este valor no está permitido.",
+        "regex": "El valor no cumple con el formato esperado.",
+        "password": {
+            "hasNumber": "Debe contener al menos un número (0-9).",
+            "hasLowerCase": "Debe contener al menos una letra minúscula (a-z).",
+            "hasUpperCase": "Debe contener al menos una letra mayúscula (A-Z).",
+            "hasSpecialChar": "Debe contener al menos un carácter especial: {chars}.",
+            "hasMinLength": "Debe tener al menos 8 caracteres sin espacios.",
+            "confirmation": "La confirmación no coincide con la contraseña ingresada."
+        },
+        "custom": {
+            "phone": "Ingresa un número de teléfono válido con código de país (ejemplo: +52 555 123 4567).",
+            "postalCode": "Ingresa un código postal válido.",
+            "date": "Ingresa una fecha válida con formato AAAA-MM-DD.",
+            "beforeDate": "La fecha debe ser anterior a {date}.",
+            "afterDate": "La fecha debe ser posterior a {date}.",
+            "unique": "Este valor ya está registrado. Debe ser único."
+        }
+    }
+}
