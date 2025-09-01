@@ -1,0 +1,17 @@
+export const defaultTheme: Record<string, string> = {
+    wrapper: '',
+    label: '',
+    required: '',
+    readonly: '',
+    disabled: '',
+    wrapperInput: '',
+    wrapperInputError: '',
+    input: '',
+    inputIcon: '',
+    iconRight: '',
+    iconPassword: '',
+    error: '',
+    form: '',
+    formButton: '',
+    formButtonIcon: '',
+};
