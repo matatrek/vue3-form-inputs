@@ -1,3 +1,63 @@
-@tailwind base;
+/* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .mtk-wrapper {
+        @apply block w-full h-auto;
+    }
+
+    .mtk-label {
+        @apply leading-4;
+    }
+
+    .mtk-required {
+        @apply text-red-500;
+    }
+
+    .mtk-disabled {
+        @apply text-gray-400;
+    }
+
+    .mtk-error {
+        @apply text-sm leading-5 text-red-500;
+    }
+
+    .mtk-wrapper-input {
+        @apply relative w-full block mt-1 disabled:cursor-not-allowed rounded-md;
+    }
+
+    .mtk-wrapper-input-error {
+        @apply border border-red-500 bg-red-100 text-red-500 placeholder:text-red-400 focus:border-red-500;
+    }
+
+
+    .mtk-input {
+        @apply relative w-full rounded-md border border-slate-200 bg-white px-4 py-2 leading-5 outline outline-2 outline-transparent outline-offset-2 focus:ring-2 focus:ring-blue-400/30 disabled:cursor-not-allowed disabled:bg-gray-200
+    }
+
+    .mtk-input-icon {
+        @apply pl-8;
+    }
+
+    .mtk-icon *,
+    .mtk-form-button-icon {
+        @apply w-5 h-5;
+    }
+
+    .mtk-input-icon-right {
+        @apply absolute start-2 top-1/2 transform -translate-y-1/2;
+    }
+
+    .mtk-input-icon-password {
+        @apply absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer z-10
+    }
+
+    .mtk-form-button {
+        @apply flex items-center flex-row gap-2 p-2 py-1 border border-gray-500 border-solid text-black rounded transition text-left;
+    }
+
+    .mtk-form {
+        @apply space-y-4;
+    }
+}
