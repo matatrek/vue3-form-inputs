@@ -9,7 +9,10 @@
       "import": "./dist/vue3-form-inputs.es.js",
       "require": "./dist/vue3-form-inputs.umd.js"
     },
-    "./style": "./dist/style.css"
+    "./validators": {
+      "import": "./dist/plugins/i18n/i18n-validators.js",
+      "require": "./dist/plugins/i18n/i18n-validators.cjs"
+    }
   },
   "files": [
     "dist"
