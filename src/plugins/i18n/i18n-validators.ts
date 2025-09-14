@@ -1,7 +1,7 @@
 import * as validators from "@vuelidate/validators";
 import type { ComputedRef } from "vue";
 import { helpers } from "@vuelidate/validators";
-import i18n from "./i18n.ts";
+import i18n from "./index.ts";
 import { useTranslation } from '@src/utils/useTranslation';
 const { createI18nMessage } = validators;
 
