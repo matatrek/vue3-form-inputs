@@ -5,7 +5,6 @@ import i18n from "./i18n.ts";
 import { useTranslation } from '@src/utils/useTranslation';
 const { createI18nMessage } = validators;
 
-const errorPassword: string = 'validations.password.'
 
 // Crea la función que usará los mensajes de vue-i18n
 const withI18nMessage = createI18nMessage({
@@ -36,7 +35,7 @@ export const regex          = (expr: RegExp) => withI18nMessage(helpers.regex(ex
 
 export const sameAsPassword = (password: ComputedRef<string>) => helpers.withMessage((): string  => {
     const { t } = useTranslation();
-    return t(errorPassword + "confirmation");
+    return t("confirmation");
   },
   (value: string): boolean => {
     return value === password.value
@@ -47,15 +46,15 @@ export const password = helpers.withMessage(({ $model }: { $model: string}): str
     const { t } = useTranslation();
 
     if (!/^[^\s]{8,}$/.test($model))
-      return t(errorPassword + "hasMinLength");
+      return t("hasMinLength");
     if (!/[!@#$%&*().\-_]/.test($model))
-      return t(errorPassword + "hasSpecialChar", { chars: '(!@#$%&*().-_)' });
+      return t("hasSpecialChar");
     if (!/\d/.test($model)) 
-      return t(errorPassword + "hasNumber");
+      return t("hasNumber");
     if (!/[a-z]/.test($model))
-      return t(errorPassword + "hasLowerCase");
+      return t("hasLowerCase");
     if (!/[A-Z]/.test($model))
-      return t(errorPassword + "hasUpperCase");
+      return t("hasUpperCase");
 
     return "";
   },

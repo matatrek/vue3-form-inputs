@@ -17,17 +17,9 @@
         "ipAddress": "Ingresa una dirección IP válida (ejemplo: 192.168.0.1).",
         "macAddress": "Ingresa una dirección MAC válida (ejemplo: 00:1B:44:11:3A:B7).",
         "url": "Ingresa una URL válida (ejemplo: https://ejemplo.com).",
-        "sameAs": "El valor debe coincidir con {otherName}.",
+        "sameAs": "El valor debe coincidir con el campo requerido.",
         "not": "Este valor no está permitido.",
         "regex": "El valor no cumple con el formato esperado.",
-        "password": {
-            "hasNumber": "Debe contener al menos un número (0-9).",
-            "hasLowerCase": "Debe contener al menos una letra minúscula (a-z).",
-            "hasUpperCase": "Debe contener al menos una letra mayúscula (A-Z).",
-            "hasSpecialChar": "Debe contener al menos un carácter especial: {chars}.",
-            "hasMinLength": "Debe tener al menos 8 caracteres sin espacios.",
-            "confirmation": "La confirmación no coincide con la contraseña ingresada."
-        },
         "custom": {
             "phone": "Ingresa un número de teléfono válido con código de país (ejemplo: +52 555 123 4567).",
             "postalCode": "Ingresa un código postal válido.",
@@ -36,5 +28,15 @@
             "afterDate": "La fecha debe ser posterior a {date}.",
             "unique": "Este valor ya está registrado. Debe ser único."
         }
-    }
+    },
+    "disabled": "desactivado",
+    "readonly": "sólo lectura",
+    "send":     "Enviar",
+    "placeholder": "Ingresa un valor en este campo.",
+    "hasNumber": "Debe contener al menos un número (0-9).",
+    "hasLowerCase": "Debe contener al menos una letra minúscula (a-z).",
+    "hasUpperCase": "Debe contener al menos una letra mayúscula (A-Z).",
+    "hasSpecialChar": "Debe contener al menos un carácter especial: (!@#$%&*().-_).",
+    "hasMinLength": "Debe tener al menos 8 caracteres sin espacios.",
+    "confirmation": "La confirmación no coincide con la contraseña ingresada."
 }

@@ -17,17 +17,9 @@
         "ipAddress": "Enter a valid IP address (example: 192.168.0.1).",
         "macAddress": "Enter a valid MAC address (example: 00:1B:44:11:3A:B7).",
         "url": "Enter a valid URL (example: https://example.com).",
-        "sameAs": "The value must match {otherName}.",
+        "sameAs": "The value must match the required field.",
         "not": "This value is not allowed.",
         "regex": "The value does not match the expected format.",
-        "password": {
-            "hasNumber": "Must contain at least one number (0-9).",
-            "hasLowerCase": "Must contain at least one lowercase letter (a-z).",
-            "hasUpperCase": "Must contain at least one uppercase letter (A-Z).",
-            "hasSpecialChar": "Must contain at least one special character: {chars}.",
-            "hasMinLength": "Must be at least 8 characters long without spaces.",
-            "confirmation": "Password confirmation does not match the entered password."
-        },
         "custom": {
             "phone": "Enter a valid phone number with country code (example: +1 555 123 4567).",
             "postalCode": "Enter a valid postal code.",
@@ -36,5 +28,15 @@
             "afterDate": "The date must be after {date}.",
             "unique": "This value is already registered. It must be unique."
         }
-    }
+    },
+    "disabled": "disabled",
+    "readonly": "readonly",
+    "send":     "Send",
+    "placeholder": "Enter a value in this field.",
+    "hasNumber": "Must contain at least one number (0-9).",
+    "hasLowerCase": "Must contain at least one lowercase letter (a-z).",
+    "hasUpperCase": "Must contain at least one uppercase letter (A-Z).",
+    "hasSpecialChar": "Must contain at least one special character: (!@#$%&*().-_).",
+    "hasMinLength": "Must be at least 8 characters long without spaces.",
+    "confirmation": "Password confirmation does not match the entered password."
 }
