@@ -1,16 +1,16 @@
 import * as validators from "@vuelidate/validators";
 import type { ComputedRef } from "vue";
 import { helpers } from "@vuelidate/validators";
-import i18n from "./index.ts";
 import { useTranslation } from '@src/utils/useTranslation';
+import { getI18n } from "@src/utils/useI18nSingleton";
 const { createI18nMessage } = validators;
 
 
-// Crea la función que usará los mensajes de vue-i18n
-const withI18nMessage = createI18nMessage({
-  t: i18n.global.t.bind(i18n),
-  messages: i18n.global.messages,
-});
+const withI18nMessage = (rule: any, opts: any = {}) =>
+  createI18nMessage({
+    t: (...args: any[]) => getI18n().global.t(...args),
+    messages: () => getI18n().global.messages,
+})(rule, opts);
 
 export const required       = withI18nMessage(validators.required);
 export const requiredIf     = withI18nMessage(validators.requiredIf, { withArguments: true });
