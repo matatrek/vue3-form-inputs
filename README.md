@@ -29,6 +29,8 @@ app.mount('#app')
 Optional  Parameters
 
 ■ i18n: Pass your Vue I18n instance if you're using internationalization.
+The plugin includes support for ready-to-use validation messages based on the standard Vuelidate rules (required, email, minLength, maxLength, numeric, etc.), as well as some custom rules (phone, postalCode, date, etc.).
+All these messages can be overridden or extended in your vue-i18n configuration when creating your instance.
 
 ■ theme: Pass an object with CSS class overrides for default form elements. If omitted, default styles are used. If partial, the provided classes are merged with the defaults.
 
@@ -45,6 +47,40 @@ You can even pass custom classes like:
 theme: {
   input: 'mi_input', // Your own global CSS class
 }
+```
+
+## Internationalization (i18n)
+
+This plugin supports Vue I18n. You can pass your own i18n instance when installing the plugin.  
+This allows you to add or override translation messages easily.
+
+```js
+import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
+import App from './App.vue'
+import VueInputPlugin from "@matatrek/vue3-form-inputs"
+
+const i18n = createI18n({
+  legacy: false,
+  locale: 'es',
+  fallbackLocale: 'en',
+  globalInjection: true,
+  messages: {
+    en: {
+      prueba: "english",
+      confirmation: "Passwords must match"
+    },
+    es: {
+      prueba: "español",
+      confirmation: "Las contraseñas deben coincidir"
+    }
+  }
+})
+
+const app = createApp(App)
+app.use(i18n)
+app.use(VueInputPlugin, { i18n })
+app.mount("#app")
 ```
 
 ##### Default Theme Structure
