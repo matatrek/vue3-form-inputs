@@ -22,7 +22,8 @@ app.use(FormInputsPlugin, {
     input: 'bg-white text-gray-800',
     label: 'text-blue-600 font-semibold',
     wrapperInput: 'border-gray-400'
-  } // Optional
+  },  // Optional
+  language: 'es' // Optional
 });
 app.mount('#app')
 ```
@@ -33,6 +34,8 @@ The plugin includes support for ready-to-use validation messages based on the st
 All these messages can be overridden or extended in your vue-i18n configuration when creating your instance.
 
 ■ theme: Pass an object with CSS class overrides for default form elements. If omitted, default styles are used. If partial, the provided classes are merged with the defaults.
+
+■ language: Pass a string with the required language to be initialized if an i18n Vue instance isn't being used. Allowed values ​​are "es" and "en," with the former being the default.
 
 If you prefer, you can import the theme from another file:
 
