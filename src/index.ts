@@ -9,6 +9,7 @@ export * from "@src/plugins/i18n/validators";
 import { english, spanish } from "@src/plugins/i18n/languages";
 import { setI18n } from "@src/utils/useI18nSingleton";
 import i18nDefault from "@src/plugins/i18n";
+import { normalizeLanguage } from "@src/plugins/i18n/config";
 
 const defaultMessages: Record<string, Record<string, string>> = {
     en: {...english },
@@ -16,7 +17,7 @@ const defaultMessages: Record<string, Record<string, string>> = {
 };
 
 export default {
-    install: (app: App, options: {  i18n: any, theme?: Theme } = { i18n: "", theme: {} }) => {
+    install: (app: App, options: {  i18n: any, theme?: Theme, language?: string  } = { i18n: "", theme: {} }) => {
         const mergedTheme = { ...defaultTheme, ...options.theme }
         app.provide(THEME_SYMBOL, mergedTheme)
         
@@ -33,6 +34,8 @@ export default {
             setI18n(options.i18n);
 
         } else {
+            i18nDefault.global.locale.value = normalizeLanguage(options.language);
+            console.log("idioma", i18nDefault.global.locale.value);
             setI18n(i18nDefault);
         }
 
