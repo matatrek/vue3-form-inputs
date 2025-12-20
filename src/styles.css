@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+/* @layer components {
     .mtk-wrapper {
         @apply block w-full h-auto;
     }
@@ -24,7 +24,7 @@
     }
 
     .mtk-wrapper-input {
-        @apply relative w-full block mt-1 disabled:cursor-not-allowed rounded-md;
+        @apply relative block mt-1 disabled:cursor-not-allowed rounded-md;
     }
 
     .mtk-wrapper-input-error {
@@ -60,4 +60,4 @@
     .mtk-form {
         @apply space-y-4;
     }
-}
+} */
