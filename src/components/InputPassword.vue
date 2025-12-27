@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, withDefaults, defineProps } from "vue";
 import InputText from "./InputText.vue";
 
 interface Props {
@@ -13,10 +13,16 @@ interface Props {
   disabled?: boolean;
   readonly?: boolean;
   themeOverride?: Record<string, string>;
+  showToggle?: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  showToggle: true,
+});
+
 defineEmits(["update:modelValue"]);
+
+const { showToggle, ...inputProps } = props;
 
 const visible = ref(false);
 
@@ -29,17 +35,26 @@ const type = computed(() => (visible.value ? "text" : "password"));
 
 <template>
   <InputText
-    v-bind="props"
+    v-bind="inputProps"
     :type="type"
     @update:modelValue="$emit('update:modelValue', $event)"
   >
+    <template #prepend>
+      <slot name="prepend" />
+    </template>
     <template #append>
-      <slot name="toggle" :visible="visible" :toggle="toggle">
-        <button type="button" tabindex="-1" @click="toggle">
+      <template v-if="showToggle">
+        <slot
+          v-if="$slots.toggle"
+          name="toggle"
+          :visible="visible"
+          :toggle="toggle"
+        />
+        <button v-else type="button" tabindex="-1" @click="toggle">
           <span v-if="!visible">🙈</span>
           <span v-else>👁</span>
         </button>
-      </slot>
+      </template>
     </template>
   </InputText>
 </template>
