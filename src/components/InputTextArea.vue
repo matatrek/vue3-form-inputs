@@ -5,31 +5,25 @@ import { useTheme, cx } from "@composables/useTheme.ts";
 import { useTranslation } from "@src/utils/useTranslation";
 import { withDefaults, defineProps } from "vue";
 
-interface TextareaProps {
-  modelValue: string;
+interface Props {
+  modelValue: any;
   name: string;
+  id?: string;
   label?: string;
+  placeholder?: string;
   hint?: string;
   validation?: string;
-  rows?: number;
-  cols?: number;
-  minlength?: number;
-  maxlength?: number;
-  placeholder?: string;
-  wrap?: "soft" | "hard";
   disabled?: boolean;
   readonly?: boolean;
-  required?: boolean;
-  autofocus?: boolean;
+  rows?: number;
   themeOverride?: Record<string, string>;
 }
 
-const props = withDefaults(defineProps<TextareaProps>(), {
+const props = withDefaults(defineProps<Props>(), {
   placeholder: "",
-  rows: 3,
-  wrap: "soft",
   disabled: false,
   readonly: false,
+  rows: 3,
 });
 
 defineEmits(["update:modelValue"]);
@@ -40,48 +34,50 @@ const { t } = useTranslation();
 
 <template>
   <BaseInput
-    v-bind="props"
+    v-bind="$props"
     @update:modelValue="$emit('update:modelValue', $event)"
   >
     <template #default="{ input }: { input: BaseInputSlotProps }">
       <div :class="cx(theme.wrapper)">
         <!-- LABEL -->
-        <label v-if="label" :class="cx(theme.label)"
+        <label v-if="label" :for="input.id" :class="cx(theme.label)"
           >{{ t(label) }}
           <span v-if="input.isRequired" :class="cx(theme.required)">*</span>
         </label>
+
         <div
           :class="[
-            theme.inputWrapper.base,
-            input.hasError && theme.inputWrapper.error,
+            cx(theme.fieldWrapper),
+            input.hasError && input.isTouched && theme.fieldWrapper.error,
+            input.isFocused && theme.fieldWrapper.focus,
           ]"
         >
           <!-- TEXTAREA -->
           <textarea
+            :id="input.id"
             :name="input.name"
             :value="input.value"
-            :rows="rows"
-            :cols="cols"
-            :minlength="minlength"
-            :maxlength="maxlength"
             :placeholder="t(placeholder)"
-            :wrap="wrap"
+            :rows="rows"
             :disabled="input.disabled"
             :readonly="input.readonly"
-            :required="required"
-            :autofocus="autofocus"
             @input="input.onUpdate"
-            :class="cx(theme.input)"
+            @focus="input.onFocus"
+            @blur="input.onBlur"
+            :class="cx(theme.field)"
           />
         </div>
 
         <!-- HINT -->
         <p v-if="!input.hasError && hint" :class="cx(theme.hint)">
-          {{ hint }}
+          {{ t(hint) }}
         </p>
 
         <!-- ERROR -->
-        <p v-if="input.hasError" :class="cx(theme.error)">
+        <p
+          v-if="input.hasError && (input.isTouched || input.isFormSubmitted)"
+          :class="cx(theme.error)"
+        >
           {{ t(input.message as string) }}
         </p>
       </div>
