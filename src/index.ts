@@ -5,6 +5,8 @@ import {
   FormContainer,
   InputPassword,
   InputTextArea,
+  InputSelect,
+  InputOTP
 } from "@src/components";
 import { THEME_SYMBOL } from "@theme/theme.symbol.ts";
 export * from "@plugins/i18n/validators";
@@ -53,6 +55,8 @@ export default {
     app.component("InputText", InputText);
     app.component("InputPassword", InputPassword);
     app.component("InputTextArea", InputTextArea);
+    app.component("InputSelect", InputSelect);
+    app.component("InputOTP", InputOTP);
   },
 };
 
