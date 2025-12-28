@@ -7,49 +7,74 @@ export const defaultTheme: Record<string, Record<string, any>> = {
   input: {
     wrapper: "mtk-input-wrapper",
     label: "mtk-input-label",
-    input: "mtk-input-input",
+    field: "mtk-input-input",
     prepend: "mtk-input-prepend",
     append: "mtk-input-append",
     hint: "mtk-input-hint",
     error: "mtk-input-error",
     required: "mtk-input-required",
-    inputWrapper: {
-      base: 'mtk-input-wrapper',
-      error: 'mtk-input-wrapper-error',
+    fieldWrapper: {
+      base: "mtk-input-wrapper",
+      error: "mtk-input-wrapper-error",
+      focus: "mtk-input-wrapper-focus",
     },
   },
 
   textarea: {
     wrapper: "mtk-textarea-wrapper",
     label: "mtk-textarea-label",
-    input: "mtk-textarea-input",
+    field: "mtk-textarea-input",
     hint: "mtk-textarea-hint",
     error: "mtk-textarea-error",
     required: "mtk-textarea-required",
-    inputWrapper: {
-      base: 'mtk-textarea-wrapper',
-      error: 'mtk-textarea-wrapper-error',
+    fieldWrapper: {
+      base: "mtk-textarea-wrapper",
+      error: "mtk-textarea-wrapper-error",
+      focus: "mtk-textarea-wrapper-focus",
+    },
+  },
+
+  otp: {
+    wrapper: "mtk-otp-wrapper",
+    label: "mtk-otp-label",
+    field: "mtk-otp-otp",
+    hint: "mtk-otp-hint",
+    error: "mtk-otp-error",
+    required: "mtk-otp-required",
+    fieldWrapper: {
+      base: "mtk-otp-wrapper",
+      error: "mtk-otp-wrapper-error",
+      focus: "mtk-otp-wrapper-focus",
     },
   },
 
   // checkbox: {
   //   wrapper: "mtk-wrapper",
   //   label: "mtk-checkbox-label",
-  //   input: "mtk-checkbox",
+  //   field: "mtk-checkbox",
   //   hint: "mtk-hint",
   //   error: "mtk-error",
-  //   inputWrapper: "mtk-input-wrapper",
+  //   fieldWrapper: {
+  //     base: 'mtk-select-wrapper',
+  //     error: 'mtk-select-wrapper-error',
+  //     focus: 'mtk-select-wrapper-focus',
+  //   },
   // },
 
-  // select: {
-  //   wrapper: "mtk-wrapper",
-  //   label: "mtk-label",
-  //   fieldWrapper: "mtk-select-wrapper",
-  //   select: "mtk-select",
-  //   option: "mtk-option",
-  //   hint: "mtk-hint",
-  //   error: "mtk-error",
-  // },
+  select: {
+    wrapper: "mtk-select-wrapper",
+    label: "mtk-select-label",
+    field: "mtk-select-input",
+    hint: "mtk-select-hint",
+    error: "mtk-select-error",
+    required: "mtk-select-required",
+    option: "mtk-select-option",
+    fieldWrapper: {
+      base: "mtk-select-wrapper",
+      error: "mtk-select-wrapper-error",
+      focus: "mtk-select-wrapper-focus",
+    },
+  },
 
   // button: {
   //   base: "mtk-btn",
