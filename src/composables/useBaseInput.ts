@@ -1,34 +1,54 @@
-import { computed, inject } from "vue";
-import type { ComputedRef } from "vue";
+import { ref } from "vue";
 
-export function useBaseInput(props: any, emit: any) {
-  const errorsVuelidate = inject("errorsVuelidate", {});
-  const rulesVuelidate = inject("rulesVuelidate", {});
+export function useBaseInput(emit: any) {
+  const isFocused = ref(false);
+  const isTouched = ref(false);
+  const isDirty = ref(false);
 
-  const isRequired: ComputedRef<boolean> = computed(
-    () => rulesVuelidate?.value?.[props.validation]?.required !== undefined
-  );
+  const getValueFromEvent = (event: Event) => {
+    const target = event.target as HTMLElement;
 
-  const validator: ComputedRef<boolean> = computed(
-    () => errorsVuelidate.value?.[props.validation] || null
-  );
+    if (target instanceof HTMLSelectElement) {
+      return target.multiple
+        ? Array.from(target.selectedOptions).map((o) => o.value)
+        : target.value;
+    }
 
-  const hasError: ComputedRef<boolean> = computed(
-    () => !!validator.value?.$error
-  );
+    if (
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement
+    ) {
+      return target.value;
+    }
 
-  const message: ComputedRef<string> = computed(
-    () => validator.value?.$errors?.[0]?.$message || ""
-  );
+    return null;
+  };
 
   const onUpdate = (event: Event) => {
-    emit("update:modelValue", (event.target as HTMLInputElement).value);
+    isDirty.value = true;
+    emit("update:modelValue", getValueFromEvent(event));
+  };
+
+  const onFocus = () => {
+    isFocused.value = true;
+  };
+
+  const onBlur = () => {
+    isFocused.value = false;
+    isTouched.value = true;
+  };
+
+  const onInput = (event: Event) => {
+    emit("input", event);
   };
 
   return {
-    isRequired,
-    hasError,
-    message,
+    isFocused,
+    isTouched,
+    isDirty,
     onUpdate,
+    onFocus,
+    onBlur,
+    onInput,
   };
 }
