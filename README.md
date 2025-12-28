@@ -17,13 +17,13 @@ import FormInputsPlugin from "@matatrek/vue3-form-inputs";
 
 const app = createApp(App)
 app.use(FormInputsPlugin, {
-  i18n, // Optional
+  i18n, 
   theme: {
-    input: 'bg-white text-gray-800',
-    label: 'text-blue-600 font-semibold',
-    wrapperInput: 'border-gray-400'
-  },  // Optional
-  language: 'es' // Optional
+    input: {},
+    textarea: {},
+    otp: {},
+  },  
+  language: 'es'
 });
 app.mount('#app')
 ```
@@ -48,7 +48,22 @@ You can even pass custom classes like:
 
 ```js
 theme: {
-  input: 'mi_input', // Your own global CSS class
+  input: {
+    wrapper: "class-wrapper",
+    label: "label-wrapper",
+    field: "",
+    prepend: "",
+    append: "",
+    hint: "",
+    error: "",
+    required: "",
+    fieldWrapper: {
+      base: "",
+      error: "",
+      focus: "",
+    },
+  }, 
+  ...
 }
 ```
 
@@ -89,24 +104,27 @@ app.mount("#app")
 ##### Default Theme Structure
 You can pass any of the following keys in the theme:
 ```js
-{
-    wrapper: '',
-    label: '',
-    required: '',
-    readonly: '',
-    disabled: '',
-    wrapperInput: '',
-    wrapperInputError: '',
-    input: '',
-    inputIcon: '',
-    iconRight: '',
-    iconPassword: '',
-    error: '',
-    form: '',
-    formButton: '',
-    formButtonIcon: '',
+{ 
+  input: {
+    wrapper: "",
+    label: "",
+    field: "",
+    prepend: "",
+    append: "",
+    hint: "",
+    error: "",
+    required: "",
+    fieldWrapper: {
+      base: "",
+      error: "",
+      focus: "",
+    },
+  },
+  ...
 }
 ```
+Not all input types implement every key.
+Some keys are component-specific and will only be used if the input supports them (e.g. prepend, append, or fieldWrapper states).
 
 ## Usage
 ```vue
@@ -133,13 +151,13 @@ const submitForm = (response: Boolean) => {
 <template>
   <form-container :form="form" :rules="rules" @submit="submitForm">
     <input-text 
-      title="Email"
+      label="Email"
       validation="email"
       v-model="form.email"
       :type="'text'"
     />
     <input-text 
-      title="Name"
+      label="Name"
       validation="name"
       v-model="form.name"
       :type="'text'"
@@ -158,17 +176,12 @@ const submitForm = (response: Boolean) => {
 |-------|------|-------------|---------|
 | `form` | `object` | Reactive object with form data (required) | `{}`    |
 | `rules`     | `object` | Validation rules compatible with Vuelidate | `{}` |
-| `titleButton` | `string` | Submit button text. Rendered using i18n, if available | `"send"` |
-| `iconButton` | `component` | Optional icon component for the submit button | `null` |
-<!-- | `wrapperForm` | `string` | Optional CSS classes to customize the form styles | `null` | -->
 
 ##### Slots
 | Name | Description |
 |------|-------------|
 | `default` | Form content (inputs, selects, etc.) |
-| `options` | Optional section below the form, useful for replacing or extending the default submit button |
-
- If the `options` slot is not used, a default submit button will be rendered automatically.
+| `actions` | Optional section below the form, useful for colored buttons or links |
 
 ##### Events
 | Name | Return | Description |
@@ -181,54 +194,54 @@ You can access the methods using ref in the component
 |------|------------|--------|-------------|
 | `validate` | `void` | `boolean` | Validates the form and returns true if it is valid or false if there are errors. It also triggers the submit event. | 
 
-<!-- ##### Customization with CSS classes
-
-| Class | Descripción |
-|--------|------------|
-| `.mtk-form` | General styles for the form |
-| `.mtk-form-button` | General styles for the button |
-| `.mtk-form-button-icon` | General styles for the button icon | -->
 
 #### `InputText`
 
 ##### Props
 
-| Props | Type | Description | Default |
-|-------|------|-------------|---------|
-| `modelValue` | `string` | The value bound to the input | `""`    |
-| `title` | `string` | Label text for the input. Rendered using i18n, if available | `""` |
-| `validation` | `string` | Key for the validation rule in Vuelidate. | `""` |
-| `type` | `string` | Input type (e.g., "text", "password", "email") | `text` |
-| `icon` | `component` | Optional icon component displayed inside the input | `null` |
-| `disabled` | `boolean` | Whether the input is disabled | `false` |
-| `readonly` | `boolean` | Whether the input is read-only | `null` |
-| `placeholder` | `string` | laceholder text. Rendered using i18n, if available | `"Enter field"` |
+| Prop | Type      | Description      | Default         |
+| --------------- | --------- | ----------------------------------------------------------------------- | --------------- |
+| `modelValue`    | `any`     | The value bound to the input| `""` |
+| `name`          | `string`  | Name attribute of the input. Used for forms and accessibility| `""` |
+| `id` | `string`  | Input id. If not provided, one will be generated automatically          | `auto`          |
+| `label`         | `string`  | Label text for the input. Rendered using i18n, if available  | `""` |
+| `type`          | `string`  | Input type (e.g. `"text"`, `"password"`, `"email"`)          | `"text"`        |
+| `placeholder`   | `string`  | Placeholder text. Rendered using i18n, if available          | `"Enter field"` |
+| `hint`          | `string`  | Helper text displayed below the input when there is no validation error | `""` |
+| `validation`    | `string`  | Key for the validation rule in Vuelidate          | `""` |
+| `disabled`      | `boolean` | Whether the input is disabled          | `false`         |
+| `readonly`      | `boolean` | Whether the input is read-only         | `false`         |
+| `themeOverride` | `object`  | Local theme overrides applied only to this input instance    | `{}` |
+
 
 ##### Slots
-| Name | Description |
-|------|-------------|
-| `error` | Custom error message slot |
+| Name | Scope  | Description    |
+| --------- | ------------------------------- | -------------------------------------------------------------------------- |
+| `prepend` | — | Content rendered before the input (icons, buttons, prefixes, etc.)    |
+| `append`  | — | Content rendered after the input (icons, actions, toggles, etc.) |
+
 
 ##### Events
 | Name | Return | Description |
 |------|------------|-------------|
 | `update:modelValue` | `string` | Emitted when the input value changes | 
 
-<!-- ##### Customization with CSS classes
+@matatrek/vue3-form-inputs follows a headless architecture, meaning that each input component is built on top of a shared base but can expose its own props, slots, and behaviors depending on its purpose.
 
-| Class | Descripción |
-|--------|------------|
-| `.mtk-wrapper` | Main container for the input field |
-| `.mtk-label` | Label styling |
-| `.mtk-required` | tyle for the required * indicator |
-| `.mtk-disabled` | Style for the (disabled) label |
-| `.mtk-readonly` | Style for the (read-only) label |
-| `.mtk-wrapper-input` | Wrapper around the input field |
-| `.mtk-input` | Default input field styling |
-| `.mtk-input-icon-right` | Positions the right-side icon inside the input |
-| `.mtk-input-icon-password` | ositions the password visibility toggle |
-| `.mtk-error` | Error message styling | -->
+Because of this:
+- Not all props are available in every component
+- Slots may differ between inputs (for example, prepend / append only exist where they make sense)
+- Some components may define additional or specialized props
+- Certain theme keys may not apply to all inputs
 
+For the most accurate and up-to-date API, please refer to the corresponding .vue file of each component, where you can find:
+
+- Supported props
+- Available slots
+- Emitted events
+- Headless structure and theme keys used
+
+This approach keeps the library flexible, scalable, and override-driven, while allowing each component to stay focused on its specific responsibility.
 
 ## License
 **@matatrek/vue3-form-inputs** is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
