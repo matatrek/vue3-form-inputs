@@ -39,15 +39,16 @@ const { t } = useTranslation();
     <template #default="{ input }: { input: BaseInputSlotProps }">
       <div :class="cx(theme.wrapper)">
         <!-- LABEL -->
-        <label v-if="label" :class="cx(theme.label)"
+        <label v-if="label" :for="input.id" :class="cx(theme.label)"
           >{{ t(label) }}
           <span v-if="input.isRequired" :class="cx(theme.required)">*</span>
         </label>
 
         <div
           :class="[
-            theme.inputWrapper.base,
-            input.hasError && theme.inputWrapper.error,
+            cx(theme.fieldWrapper),
+            input.hasError && (input.isTouched || input.isFormSubmitted) && theme.fieldWrapper.error,
+            input.isFocused && theme.fieldWrapper.focus,
           ]"
         >
           <!-- PREPEND SLOT -->
@@ -65,7 +66,9 @@ const { t } = useTranslation();
             :disabled="input.disabled"
             :readonly="input.readonly"
             @input="input.onUpdate"
-            :class="cx(theme.input)"
+            @focus="input.onFocus"
+            @blur="input.onBlur"
+            :class="cx(theme.field)"
           />
 
           <!-- APPEND SLOT -->
@@ -76,11 +79,14 @@ const { t } = useTranslation();
 
         <!-- HINT -->
         <p v-if="!input.hasError && hint" :class="cx(theme.hint)">
-          {{ hint }}
+          {{ t(hint) }}
         </p>
 
         <!-- ERROR -->
-        <p v-if="input.hasError" :class="cx(theme.error)">
+        <p
+          v-if="input.hasError && (input.isTouched || input.isFormSubmitted)"
+          :class="cx(theme.error)"
+        >
           {{ t(input.message as string) }}
         </p>
       </div>
