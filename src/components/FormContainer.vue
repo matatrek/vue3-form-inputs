@@ -6,7 +6,6 @@ import {
   defineProps,
   defineEmits,
   provide,
-  withDefaults,
   computed,
 } from "vue";
 import { useTheme, cx } from "@composables/useTheme.ts";
@@ -26,18 +25,23 @@ const emit = defineEmits<{
 const rulesVuelidate = ref(props.rules);
 const $v = useVuelidate(props.rules, props.form);
 const theme = useTheme("form", props.themeOverride);
+const isSubmitted = ref(false);
 
 provide("rulesVuelidate", rulesVuelidate);
 provide(
   "errorsVuelidate",
   computed(() => $v.value)
 );
+provide("isFormSubmitted", isSubmitted);
 
 const reset = () => {
+  isSubmitted.value = false;
   $v.value.$reset();
 };
 
+
 const validate = async () => {
+  isSubmitted.value = true;
   const isValid = await $v.value.$validate();
   emit("submit", isValid);
   return isValid;
